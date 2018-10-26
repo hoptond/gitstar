@@ -7,7 +7,26 @@
     <script src="dist/star.js" defer></script>
 </head>
 <body>
-<p>The most starred repos that were updated in 2017 are: </p>
+<form>
+    <div>
+        <label>Name:</label>
+        <input id="name" name="name" type="text">
+    </div>
+    <div>
+        <label>Start Date:</label>
+        <input id="startdate" name="startdate" type="date">
+    </div>
+    <div>
+        <label>End Date:</label>
+        <input id="enddate" name="enddate" type="date">
+    </div>
+    <div>
+        <input id="submit" type="submit" value="Search">
+    </div>
+</form>
+
+
+<h4>Results:</h4>
 <ul id="repos">
 
 </ul>
