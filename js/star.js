@@ -1,5 +1,5 @@
 async function getPopularRepos(name, startdate, enddate) {
-    let response = await fetch(`https://api.github.com/search/repositories?q=${name}&sort=stars&pushed:${startdate}..${enddate}`)
+    let response = await fetch(`https://api.github.com/search/repositories?q=${name} pushed:${startdate}..${enddate}&sort=stars`)
     let data = await response.json()
     let repos = data.items.slice(0, 3)
     var results = document.getElementById('repos')
