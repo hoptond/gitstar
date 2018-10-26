@@ -13,6 +13,6 @@ gulp.task('babel:watch', function () {
     gulp.watch('js/*.js', ['babel'])
 })
 
-// gulp.task('default', function() {
-//     gulp.start('babel:watch')
-// })
+ gulp.task('default', function() {
+     gulp.start('babel:watch')
+ })
