@@ -1,12 +1,26 @@
-async function getPopularRepos() {
-    let response = await fetch('https://api.github.com/search/repositories?sort=stars&q=pushed:2017-01-01..2017-12-31')
+async function getPopularRepos(name, startdate, enddate) {
+    let response = await fetch(`https://api.github.com/search/repositories?q=${name} pushed:${startdate}..${enddate}&sort=stars`)
     let data = await response.json()
     let repos = data.items.slice(0, 3)
-    var display = document.getElementById('repos')
+    var results = document.getElementById('results')
     repos.forEach(function(repo) {
-        var listItem = document.createElement('li')
+        let listItem = document.createElement('li')
         listItem.innerText = repo.name
-        display.appendChild(listItem)
+        results.appendChild(listItem)
     })
 }
-getPopularRepos()
+
+function clearResults() {
+    var results = document.getElementById('results')
+    while(results.firstChild) {
+        results.removeChild(results.firstChild)
+    }
+}
+
+document.querySelector('#submit').addEventListener('click', function (e) {
+    var formData = new FormData(e.target.form)
+    clearResults()
+    getPopularRepos(formData.get('name'), formData.get('startdate'), formData.get('enddate'))
+    document.querySelector('h4').classList.remove('hidden')
+    e.preventDefault()
+})
